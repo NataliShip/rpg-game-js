@@ -1,0 +1,32 @@
+{
+  "name": "rpg-game",
+  "version": "1.0.0",
+  "description": "RPG Game",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npx eslint src/**/*.js",
+    "prettier": "npx prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NataliShip/rpg-game-js.git"
+  },
+  "keywords": [],
+  "author": "Nataliya Shipelova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NataliShip/rpg-game-js/issues"
+  },
+  "homepage": "https://github.com/NataliShip/rpg-game-js#readme",
+  "devDependencies": {
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "html-webpack-plugin": "^5.3.2",
+    "prettier": "^2.3.2",
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
