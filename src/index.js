@@ -7,19 +7,38 @@ const spriteWidth = 48
 const spriteHeight = 48
 const shots = 3
 let cycle = 0
-let bottomPressed = false
-let pY = 0
+let moveDirection = null
+let pY = 300 - spriteHeight / 2
+let pX = 300 - spriteWidth / 2
+
+const DIRECTIONS = {
+  bottom: 0,
+  left: spriteHeight,
+  right: spriteHeight * 2,
+  up: spriteHeight * 3,
+}
 
 function keyDownHandler(e) {
   if (e.key === 'down' || e.key === 'ArrowDown') {
-    bottomPressed = true
+    moveDirection = 'bottom'
+  }
+  if (e.key === 'up' || e.key === 'ArrowUp') {
+    moveDirection = 'up'
+  }
+  if (e.key === 'left' || e.key === 'ArrowLeft') {
+    moveDirection = 'left'
+  }
+  if (e.key === 'right' || e.key === 'ArrowRight') {
+    moveDirection = 'right'
   }
 }
 
-function keyUpHandler(e) {
-  if (e.key === 'down' || e.key === 'ArrowDown') {
-    bottomPressed = false
-  }
+function keyUpHandler() {
+  moveDirection = null
+}
+
+function startCycle() {
+  cycle = (cycle + 1) % shots
 }
 
 document.addEventListener('keydown', keyDownHandler)
@@ -30,11 +49,27 @@ img.src = femaleWalk
 
 img.addEventListener('load', () => {
   setInterval(() => {
-    if (bottomPressed) {
-      pY+=10
-      cycle = (cycle + 1) % shots
+    switch (moveDirection) {
+      case 'bottom':
+        pY += 10
+        startCycle()
+        break
+      case 'up':
+        pY -= 10
+        startCycle()
+        break
+      case 'left':
+        pX -= 10
+        startCycle()
+        break
+      case 'right':
+        pX += 10
+        startCycle()
+        break
+      default:
     }
     ctx.clearRect(0, 0, 600, 600)
-    ctx.drawImage(img, cycle * spriteWidth, 0, spriteWidth, spriteHeight, 0, pY, 48, 48)
+    const dir = DIRECTIONS[moveDirection] || 0
+    ctx.drawImage(img, cycle * spriteWidth, dir, spriteWidth, spriteHeight, pX, pY, 48, 48)
   }, 120)
 })
