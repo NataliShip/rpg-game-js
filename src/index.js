@@ -51,20 +51,28 @@ img.addEventListener('load', () => {
   setInterval(() => {
     switch (moveDirection) {
       case 'bottom':
-        pY += 10
-        startCycle()
+        if (pY < 600 - spriteHeight) {
+          pY += 10
+          startCycle()
+        }
         break
       case 'up':
-        pY -= 10
-        startCycle()
+        if (pY > 0) {
+          pY -= 10
+          startCycle()
+        }
         break
       case 'left':
-        pX -= 10
-        startCycle()
+        if (pX > 0) {
+          pX -= 10
+          startCycle()
+        }
         break
       case 'right':
-        pX += 10
-        startCycle()
+        if (pX < 600 - spriteWidth) {
+          pX += 10
+          startCycle()
+        }
         break
       default:
     }
