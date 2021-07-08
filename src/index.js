@@ -3,13 +3,15 @@ import femaleWalk from './assets/Female-2-Walk.png'
 
 const canvas = document.getElementById('game')
 const ctx = canvas.getContext('2d')
+const canvasWidth = 600
+const canvasHeight = 600
 const spriteWidth = 48
 const spriteHeight = 48
 const shots = 3
 let cycle = 0
 let moveDirection = null
-let pY = 300 - spriteHeight / 2
-let pX = 300 - spriteWidth / 2
+let pY = canvasHeight / 2 - spriteHeight / 2
+let pX = canvasWidth / 2 - spriteWidth / 2
 
 const DIRECTIONS = {
   bottom: 0,
@@ -51,7 +53,7 @@ img.addEventListener('load', () => {
   setInterval(() => {
     switch (moveDirection) {
       case 'bottom':
-        if (pY < 600 - spriteHeight) {
+        if (pY < canvasHeight - spriteHeight) {
           pY += 10
           startCycle()
         }
@@ -69,14 +71,14 @@ img.addEventListener('load', () => {
         }
         break
       case 'right':
-        if (pX < 600 - spriteWidth) {
+        if (pX < canvasWidth - spriteWidth) {
           pX += 10
           startCycle()
         }
         break
       default:
     }
-    ctx.clearRect(0, 0, 600, 600)
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight)
     const dir = DIRECTIONS[moveDirection] || 0
     ctx.drawImage(img, cycle * spriteWidth, dir, spriteWidth, spriteHeight, pX, pY, 48, 48)
   }, 120)
