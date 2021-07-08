@@ -20,7 +20,7 @@ const terrain = document.createElement('img')
 terrain.src = terrainAtlas
 
 terrain.addEventListener('load', () => {
-  const {map} = worldCfg
+  const { map } = worldCfg
   map.forEach((cfgRow, y) => {
     cfgRow.forEach((cfgCell, x) => {
       const [sX, sY, sW, sH] = sprites.terrain[cfgCell[0]].frames[0]
