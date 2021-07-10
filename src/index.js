@@ -65,37 +65,41 @@ document.addEventListener('keyup', keyUpHandler)
 const img = document.createElement('img')
 img.src = femaleWalk
 
+function walk(timestamp) {
+  switch (moveDirection) {
+    case 'bottom':
+      if (pY < canvasHeight - spriteHeight) {
+        pY += 10
+        startCycle()
+      }
+      break
+    case 'up':
+      if (pY > 0) {
+        pY -= 10
+        startCycle()
+      }
+      break
+    case 'left':
+      if (pX > 0) {
+        pX -= 10
+        startCycle()
+      }
+      break
+    case 'right':
+      if (pX < canvasWidth - spriteWidth) {
+        pX += 10
+        startCycle()
+      }
+      break
+    default:
+  }
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+  const dir = DIRECTIONS[moveDirection] || 0
+  ctx.drawImage(img, cycle * spriteWidth, dir, spriteWidth, spriteHeight, pX, pY, 48, 48)
+
+  window.requestAnimationFrame(walk)
+}
+
 img.addEventListener('load', () => {
-  setInterval(() => {
-    switch (moveDirection) {
-      case 'bottom':
-        if (pY < canvasHeight - spriteHeight) {
-          pY += 10
-          startCycle()
-        }
-        break
-      case 'up':
-        if (pY > 0) {
-          pY -= 10
-          startCycle()
-        }
-        break
-      case 'left':
-        if (pX > 0) {
-          pX -= 10
-          startCycle()
-        }
-        break
-      case 'right':
-        if (pX < canvasWidth - spriteWidth) {
-          pX += 10
-          startCycle()
-        }
-        break
-      default:
-    }
-    // ctx.clearRect(0, 0, canvasWidth, canvasHeight)
-    const dir = DIRECTIONS[moveDirection] || 0
-    ctx.drawImage(img, cycle * spriteWidth, dir, spriteWidth, spriteHeight, pX, pY, 48, 48)
-  }, 120)
+  window.requestAnimationFrame(walk)
 })
