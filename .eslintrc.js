@@ -10,5 +10,8 @@ module.exports = {
   },
   rules: {
     semi: [2, 'never'],
+    "guard-for-in": "off",
+    "object-curly-newline": "off",
+    "no-restricted-syntax": "off"
   },
 }
