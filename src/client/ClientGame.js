@@ -27,9 +27,10 @@ class ClientGame {
 
   initEngine() {
     this.engine.loadSprites(sprites).then(() => {
+      this.world.init()
       // запускаем игру только после того как картинки загрузились
-      this.engine.on('render', () => {
-        this.world.init()
+      this.engine.on('render', (_, time) => {
+        this.world.render(time)
       })
       this.engine.start()
     })
