@@ -38,7 +38,23 @@ class ClientGame {
         this.world.render(time)
       })
       this.engine.start()
+      this.initKeys()
     })
+  }
+
+  initKeys() {
+    this.engine.input.onKey({
+      ArrowLeft: (keydown) => this.movePlayer(keydown, -1, 0),
+      ArrowRight: (keydown) => this.movePlayer(keydown, 1, 0),
+      ArrowUp: (keydown) => this.movePlayer(keydown, 0, -1),
+      ArrowDown: (keydown) => this.movePlayer(keydown, 0, 1),
+    })
+  }
+
+  movePlayer(keydown, col, row) {
+    if (keydown) {
+      this.player.moveByCellCoord(col, row, (cell) => cell.findObjectsByType('grass').length)
+    }
   }
 
   static init(cfg) {

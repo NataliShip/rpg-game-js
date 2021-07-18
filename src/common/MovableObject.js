@@ -44,7 +44,6 @@ class MovableObject extends PositionedObject {
   }
 
   render(time) {
-    // eslint-disable-next-line no-unused-expressions
     this.speed && this.animateMotion(time)
   }
 

@@ -1,7 +1,7 @@
 export default {
   pushEvent(event, sub) {
-    const subs = this.subscribers || (this.subscribers = {});
-    (subs[event] || (subs[event] = [])).push(sub)
+    const subs = this.subscribers || (this.subscribers = {})
+    ;(subs[event] || (subs[event] = [])).push(sub)
   },
 
   on(event, callback) {
