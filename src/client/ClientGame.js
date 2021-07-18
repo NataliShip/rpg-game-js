@@ -3,10 +3,14 @@ import ClientWorld from './ClientWorld'
 
 import sprites from '../configs/sprites'
 import levelCfg from '../configs/world.json'
+import gameObjects from '../configs/gameObjects.json'
 
 class ClientGame {
   constructor(cfg) {
-    Object.assign(this, { cfg })
+    Object.assign(this, {
+      cfg,
+      gameObjects,
+    })
 
     this.engine = this.createEngine()
     this.world = this.createWorld()

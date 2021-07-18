@@ -10,8 +10,11 @@ module.exports = {
   },
   rules: {
     semi: [2, 'never'],
-    "guard-for-in": "off",
-    "object-curly-newline": "off",
-    "no-restricted-syntax": "off"
+    'guard-for-in': 'off',
+    'object-curly-newline': 'off',
+    'no-restricted-syntax': 'off',
+    'import/prefer-default-export': 'off',
+    camelcase: 'off',
+    'no-param-reassign': 'off',
   },
 }
