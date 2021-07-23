@@ -25,11 +25,16 @@ class ClientCell extends PositionedObject {
   initGameObjects() {
     const { cellCfg } = this
 
-    this.objects = cellCfg.map((layer, layerId) => layer.map((objCfg) => new ClientGameObject({
-      cell: this,
-      objCfg,
-      layerId,
-    })))
+    this.objects = cellCfg.map((layer, layerId) =>
+      layer.map(
+        (objCfg) =>
+          new ClientGameObject({
+            cell: this,
+            objCfg,
+            layerId,
+          }),
+      ),
+    )
   }
 
   render(time, layerId) {
@@ -56,13 +61,13 @@ class ClientCell extends PositionedObject {
 
   removeGameObject(objToRemove) {
     const { objects } = this
-    objects.forEach((layer, layerId) => this.objects[layerId] = layer.filter((obj) => obj !== objToRemove))
+    objects.forEach((layer, layerId) => (this.objects[layerId] = layer.filter((obj) => obj !== objToRemove)))
   }
 
   findObjectsByType(type) {
     let foundObjects = []
 
-    this.objects.forEach((layer) => foundObjects = [...foundObjects, ...layer].filter((obj) => obj.type === type))
+    this.objects.forEach((layer) => (foundObjects = [...foundObjects, ...layer].filter((obj) => obj.type === type)))
     return foundObjects
   }
 }
