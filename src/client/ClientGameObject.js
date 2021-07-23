@@ -84,11 +84,13 @@ class ClientGameObject extends MovableObject {
     const { x, y, width, height, world } = this
     const { engine } = world
 
-    const { sprite, frame, type } = this.spriteCfg
+    if (this.spriteCfg) {
+      const { sprite, frame, type } = this.spriteCfg
 
-    const spriteFrame = type === 'static' ? frame : this.getCurrentFrame(time)
+      const spriteFrame = type === 'static' ? frame : this.getCurrentFrame(time)
 
-    engine.renderSpriteFrame({ sprite, frame: spriteFrame, x, y, w: width, h: height })
+      engine.renderSpriteFrame({ sprite, frame: spriteFrame, x, y, w: width, h: height })
+    }
   }
 
   detouch() {
