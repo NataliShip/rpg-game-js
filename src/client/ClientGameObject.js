@@ -73,7 +73,7 @@ class ClientGameObject extends MovableObject {
     const state = this.spriteCfg.states[this.state]
     const lengthFrame = state.frames.length
     const animate = animateEx(lengthFrame, this.animationStartTime, time, state.duration, true)
-    const frame = (lengthFrame + animate.offset | 0) % lengthFrame
+    const frame = ((lengthFrame + animate.offset) | 0) % lengthFrame
 
     return state.frames[frame]
   }
