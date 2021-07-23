@@ -49,16 +49,23 @@ class ClientGame {
 
   initKeys() {
     this.engine.input.onKey({
-      ArrowLeft: (keydown) => this.movePlayer(keydown, -1, 0),
-      ArrowRight: (keydown) => this.movePlayer(keydown, 1, 0),
-      ArrowUp: (keydown) => this.movePlayer(keydown, 0, -1),
-      ArrowDown: (keydown) => this.movePlayer(keydown, 0, 1),
+      ArrowLeft: (keydown) => keydown && this.movePlayer(-1, 0, 'left'),
+      ArrowRight: (keydown) => keydown && this.movePlayer(1, 0, 'right'),
+      ArrowUp: (keydown) => keydown && this.movePlayer(0, -1, 'up'),
+      ArrowDown: (keydown) => keydown && this.movePlayer(0, 1, 'down'),
     })
   }
 
-  movePlayer(keydown, col, row) {
-    if (keydown) {
-      this.player.moveByCellCoord(col, row, (cell) => cell.findObjectsByType('grass').length)
+  movePlayer(col, row, dir) {
+    const { player } = this
+
+    if (player && player.motionProgress === 1) {
+      const canMove = player.moveByCellCoord(col, row, (cell) => cell.findObjectsByType('grass').length)
+
+      if (canMove) {
+        player.setState(dir)
+        player.once('motion-stopped', () => player.setState('main'))
+      }
     }
   }
 
