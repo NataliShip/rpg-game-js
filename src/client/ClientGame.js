@@ -19,7 +19,7 @@ class ClientGame {
   }
 
   createEngine() {
-    return new ClientEngine(document.getElementById(this.cfg.tagId))
+    return new ClientEngine(document.getElementById(this.cfg.tagId), this)
   }
 
   createWorld() {
@@ -30,11 +30,16 @@ class ClientGame {
     this.player = player
   }
 
+  getWorld() {
+    return this.world
+  }
+
   initEngine() {
     this.engine.loadSprites(sprites).then(() => {
       this.world.init()
       // запускаем игру только после того как картинки загрузились
       this.engine.on('render', (_, time) => {
+        this.engine.camera.focusAtGameObject(this.player)
         this.world.render(time)
       })
       this.engine.start()
