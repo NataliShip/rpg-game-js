@@ -4,3 +4,16 @@ export function clamp(x, from_x, to_x) {
 
   return x
 }
+
+export function animateEx(dx, startTime, currentTime, speed, looped = false) {
+  const dif = currentTime - startTime
+  let time = (speed && dif / speed) || 0
+
+  if (looped) {
+    time %= 1
+  } else if (time > 1) {
+    time = 1
+  }
+
+  return { offset: dx * time, progress: time }
+}

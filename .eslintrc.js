@@ -18,5 +18,8 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'no-unused-expressions': 'off',
+    'no-bitwise': 'off',
+    'no-return-assign': 'off',
+    'max-len': ['error', { code: 120 }],
   },
 }
